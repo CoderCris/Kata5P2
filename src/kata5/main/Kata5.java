@@ -6,11 +6,12 @@ import java.util.List;
 import kata5.model.Histogram;
 import kata5.view.HistogramDisplay;
 import kata5.view.MailHistogramBuilder;
-import kata5.view.MailListBuilder;
+import java.sql.SQLException;
+import kata5.view.MailListReaderDDBB;
 
 public class Kata5 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException {
         Kata5 kata4 = new Kata5();
         kata4.execute();
     }
@@ -18,14 +19,14 @@ public class Kata5 {
     private HistogramDisplay histoDisplay;
     private Histogram<String> histogram;
     
-    public void execute() throws FileNotFoundException, IOException{
+    public void execute() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException{
         input();
         process();
         output();
     }
-    private void input()throws FileNotFoundException, IOException{
+    private void input()throws FileNotFoundException, IOException, ClassNotFoundException, SQLException{
         String filename = "C:\\Users\\Cris\\Desktop\\Ficheros para la práctica en laboratorio 5 -20180110\\emails.txt";
-        mailList = MailListBuilder.read(filename);
+        mailList = MailListReaderDDBB.read();
     }
     
     private void output(){
